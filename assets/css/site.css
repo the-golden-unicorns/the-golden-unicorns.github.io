@@ -421,6 +421,7 @@ iframe {
   display: block;
   margin-bottom: 1rem;
   color: var(--gold);
+  text-align: center;
   font-family: "Jost", sans-serif;
   font-size: 0.68rem;
   font-weight: 300;
@@ -572,6 +573,12 @@ h2 em,
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(2rem, 6vw, 5rem);
   align-items: start;
+}
+
+.split .eyebrow,
+.split .section-title {
+  text-align: left;
+  margin-left: 0;
 }
 
 .list {
