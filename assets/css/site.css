@@ -297,12 +297,16 @@ iframe {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  min-height: 100lvh;
+  min-height: 100svh;
+  /* push the logo's center below the fixed nav so it sits in the
+     visible area, not behind the transparent nav gradient */
+  padding: var(--nav-h) 1.5rem 3.5rem;
+  box-sizing: border-box;
 }
 
 .splash-logo {
   width: min(44vw, 340px);
-  min-width: 140px;
+  min-width: 160px;
   display: block;
   animation: logo-breathe 6s ease-in-out infinite;
 }
@@ -344,7 +348,7 @@ iframe {
 /* ─── CONTACT PAGE ─── */
 .contact-splash {
   min-height: calc(100vh - var(--nav-h));
-  min-height: calc(100lvh - var(--nav-h));
+  min-height: calc(100svh - var(--nav-h));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -726,6 +730,17 @@ h2 em,
 
   .tile {
     min-height: auto;
+  }
+
+  /* Splash: the mobile nav wraps to ~3 rows, so push logo below that
+     and size it to fill the screen the way the Wix site does */
+  .splash {
+    padding-top: 130px;
+    padding-bottom: 3rem;
+  }
+
+  .splash-logo {
+    width: min(72vw, 320px);
   }
 }
 
