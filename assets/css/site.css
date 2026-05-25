@@ -13,10 +13,10 @@
   --dark: #0e0d0b;
   --surface: #201e16;
   --text: #c9a85c;
-  --text-warm: #ead18c;
-  --text-soft: #d4bd80;
-  --text-dim: rgba(234, 209, 140, 0.58);
-  --text-mute: rgba(234, 209, 140, 0.34);
+  --text-warm: #d9b96a;
+  --text-soft: #c5a65c;
+  --text-dim: rgba(201, 168, 76, 0.72);
+  --text-mute: rgba(201, 168, 76, 0.40);
   --line: rgba(212, 168, 67, 0.18);
   --line-soft: rgba(212, 168, 67, 0.08);
   --nav-h: clamp(64px, 7vw, 82px);
@@ -47,24 +47,47 @@ body {
   line-height: 1.82;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body::before {
-  content: "";
+.ambient {
   position: fixed;
-  inset: -15% -10%;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100lvh;
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse at 28% 12%, rgba(212, 168, 67, 0.09), transparent 54%),
-    radial-gradient(ellipse at 76% 88%, rgba(212, 168, 67, 0.06), transparent 58%);
-  animation: ambient-drift 90s ease-in-out infinite alternate;
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-@keyframes ambient-drift {
-  to {
-    transform: translate3d(2%, -3%, 0);
-  }
+.ambient::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background: radial-gradient(ellipse at 30% 15%,
+    rgba(212, 168, 67, 0.08) 0%,
+    rgba(212, 168, 67, 0.02) 26%,
+    transparent 58%);
+  animation: drift 70s ease-in-out infinite alternate;
+}
+
+.ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 75% 90%,
+    rgba(212, 168, 67, 0.05) 0%,
+    transparent 55%);
+  animation: drift 110s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  to { transform: translate(2%, -3%); }
 }
 
 ::selection {
@@ -88,11 +111,15 @@ iframe {
 
 #motes {
   position: fixed;
-  inset: 0;
-  z-index: 1;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100lvh;
+  z-index: 1;
   pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .site-shell {
@@ -112,7 +139,7 @@ iframe {
   justify-content: space-between;
   gap: 1rem;
   padding: 0 clamp(1rem, 4vw, 3rem);
-  background: linear-gradient(to bottom, rgba(6, 6, 5, 0.92), rgba(6, 6, 5, 0));
+  background: linear-gradient(to bottom, rgba(6, 6, 5, 0.5), transparent);
   transition: background 0.35s var(--ease), backdrop-filter 0.35s var(--ease);
 }
 
@@ -177,6 +204,11 @@ iframe {
   transition: color 0.25s var(--ease);
 }
 
+.nav-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
 .nav-links a:hover,
 .nav-links a[aria-current="page"] {
   color: var(--gold-pale);
@@ -220,6 +252,46 @@ iframe {
 
 .page {
   padding-top: var(--nav-h);
+}
+
+.splash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100lvh;
+}
+
+.splash-logo {
+  width: min(42vw, 380px);
+  min-width: 180px;
+  filter: drop-shadow(0 0 48px rgba(212, 168, 67, 0.3));
+  animation: logo-breathe 8s ease-in-out infinite;
+}
+
+@keyframes logo-breathe {
+  0%, 100% { filter: drop-shadow(0 0 48px rgba(212, 168, 67, 0.30)); }
+  50%       { filter: drop-shadow(0 0 72px rgba(212, 168, 67, 0.50)); }
+}
+
+.splash-footer {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  text-align: center;
+  font-family: "Jost", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text-mute);
+}
+
+.splash-footer a {
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .hero {
@@ -514,7 +586,12 @@ h2 em,
   font-size: 0.82rem;
 }
 
-.reveal,
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
 .reveal.is-visible {
   opacity: 1;
   transform: none;
