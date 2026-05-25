@@ -341,6 +341,41 @@ iframe {
 }
 .splash-footer a:hover { color: var(--gold); }
 
+/* ─── CONTACT PAGE ─── */
+.contact-splash {
+  min-height: calc(100vh - var(--nav-h));
+  min-height: calc(100lvh - var(--nav-h));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.contact-inner {
+  width: min(100%, var(--narrow));
+}
+
+.oracle-address {
+  display: inline-block;
+  margin-top: 2.2rem;
+  color: var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.28);
+  padding-bottom: 3px;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease), text-shadow 0.25s var(--ease);
+}
+
+.oracle-address:hover {
+  color: var(--gold-pale);
+  border-color: var(--gold);
+  text-shadow: 0 0 22px rgba(212, 168, 67, 0.45);
+}
+
 /* ─── CONTENT PAGES ─── */
 .page {
   padding-top: var(--nav-h);
