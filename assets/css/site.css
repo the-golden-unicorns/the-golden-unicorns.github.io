@@ -305,8 +305,12 @@ iframe {
 }
 
 .splash-logo {
-  width: min(44vw, 340px);
-  min-width: 160px;
+  /* Desktop is landscape — size by viewport height so the logo
+     fills the screen the way the Wix site does */
+  height: min(60vh, 520px);
+  width: auto;
+  max-width: min(82vw, 520px);
+  min-height: 160px;
   display: block;
   animation: logo-breathe 6s ease-in-out infinite;
 }
@@ -717,6 +721,11 @@ h2 em,
     position: absolute;
     top: 0.85rem;
     right: 1rem;
+    min-height: 32px;
+    padding: 0.48rem 0.85rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    animation: none;
   }
 
   .page {
@@ -740,7 +749,10 @@ h2 em,
   }
 
   .splash-logo {
-    width: min(72vw, 320px);
+    /* Mobile is portrait — switch to width-based so it fills the screen */
+    height: auto;
+    width: min(72vw, 300px);
+    max-width: none;
   }
 }
 
