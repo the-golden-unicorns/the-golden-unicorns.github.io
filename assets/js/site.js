@@ -29,65 +29,115 @@
   if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const ctx = canvas.getContext("2d");
-  let width = 0;
-  let height = 0;
-  let motes = [];
-  let raf = 0;
-
-  function rand(min, max) {
-    return min + Math.random() * (max - min);
-  }
+  const COUNT = window.innerWidth < 600 ? 500 : 900;
+  const CLUSTERS = window.innerWidth < 600 ? 4 : 7;
+  const dpr = window.devicePixelRatio || 1;
+  let W, H, motes = [], clusters = [];
 
   function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = Math.floor(width * dpr);
-    canvas.height = Math.floor(height * dpr);
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const rect = canvas.getBoundingClientRect();
+    W = canvas.width = Math.floor(rect.width * dpr);
+    H = canvas.height = Math.floor(rect.height * dpr);
+  }
 
-    const count = Math.max(50, Math.min(140, Math.floor((width * height) / 10500)));
-    motes = Array.from({ length: count }, () => ({
-      x: rand(-width * 0.1, width * 1.1),
-      y: rand(-height * 0.05, height * 1.05),
-      r: rand(0.55, 2.4),
-      a: rand(0.16, 0.54),
-      vx: rand(-0.035, 0.035),
-      vy: rand(-0.018, 0.028),
-      pulse: rand(0, Math.PI * 2)
+  function gaussian() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  }
+
+  function initClusters() {
+    clusters = Array.from({ length: CLUSTERS }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.012 * dpr,
+      vy: -(Math.random() * 0.015 + 0.005) * dpr,
+      sigma: (30 + Math.random() * 60) * dpr,
     }));
   }
 
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-    motes.forEach(mote => {
-      mote.x += mote.vx;
-      mote.y += mote.vy;
-      mote.pulse += 0.008;
-
-      if (mote.x < -20) mote.x = width + 20;
-      if (mote.x > width + 20) mote.x = -20;
-      if (mote.y < -20) mote.y = height + 20;
-      if (mote.y > height + 20) mote.y = -20;
-
-      const glow = mote.r * 5.8;
-      const alpha = mote.a + Math.sin(mote.pulse) * 0.06;
-      const gradient = ctx.createRadialGradient(mote.x, mote.y, 0, mote.x, mote.y, glow);
-      gradient.addColorStop(0, `rgba(240, 208, 96, ${alpha})`);
-      gradient.addColorStop(0.28, `rgba(212, 168, 67, ${alpha * 0.52})`);
-      gradient.addColorStop(1, "rgba(212, 168, 67, 0)");
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(mote.x, mote.y, glow, 0, Math.PI * 2);
-      ctx.fill();
+  function init() {
+    initClusters();
+    motes = Array.from({ length: COUNT }, () => {
+      const inCluster = Math.random() < 0.995;
+      const cluster = inCluster ? clusters[Math.floor(Math.random() * clusters.length)] : null;
+      return {
+        cluster,
+        offX: cluster ? gaussian() * cluster.sigma : 0,
+        offY: cluster ? gaussian() * cluster.sigma : 0,
+        wx: cluster ? null : Math.random() * W,
+        wy: cluster ? null : Math.random() * H,
+        r: (Math.random() < 0.2
+            ? (Math.random() * 0.3 + 0.45)
+            : (Math.random() * 0.25 + 0.15)
+           ) * dpr,
+        o: Math.random() * 0.52 + 0.16,
+        wobble: Math.random() * Math.PI * 2,
+        wobbleSpeed: Math.random() * 0.012 + 0.004,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.008 + 0.002,
+      };
     });
-    raf = window.requestAnimationFrame(draw);
+  }
+
+  const SPRITE = 64;
+  const glowSprite = document.createElement("canvas");
+  glowSprite.width = glowSprite.height = SPRITE;
+  const sctx = glowSprite.getContext("2d");
+  const sg = sctx.createRadialGradient(SPRITE / 2, SPRITE / 2, 0, SPRITE / 2, SPRITE / 2, SPRITE / 2);
+  sg.addColorStop(0.00, "rgba(248, 222, 132, 1.00)");
+  sg.addColorStop(0.12, "rgba(232, 193, 74, 0.78)");
+  sg.addColorStop(0.35, "rgba(212, 168, 67, 0.30)");
+  sg.addColorStop(1.00, "rgba(212, 168, 67, 0)");
+  sctx.fillStyle = sg;
+  sctx.fillRect(0, 0, SPRITE, SPRITE);
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    clusters.forEach(cl => {
+      cl.x += cl.vx;
+      cl.y += cl.vy;
+      if (cl.y < -cl.sigma * 1.5) { cl.y = H + cl.sigma; cl.x = Math.random() * W; }
+      if (cl.x < -cl.sigma * 1.5) cl.x = W + cl.sigma;
+      if (cl.x > W + cl.sigma * 1.5) cl.x = -cl.sigma;
+    });
+
+    motes.forEach(m => {
+      m.wobble += m.wobbleSpeed;
+      m.pulse += m.pulseSpeed;
+      let x, y;
+      if (m.cluster) {
+        x = m.cluster.x + m.offX + Math.sin(m.wobble) * 6 * dpr;
+        y = m.cluster.y + m.offY + Math.cos(m.wobble * 0.7) * 4 * dpr;
+      } else {
+        m.wy -= 0.012 * dpr;
+        m.wx += (Math.random() - 0.5) * 0.05 * dpr;
+        if (m.wy < -10) { m.wy = H + 10; m.wx = Math.random() * W; }
+        if (m.wx < -10) m.wx = W + 10;
+        if (m.wx > W + 10) m.wx = -10;
+        x = m.wx; y = m.wy;
+      }
+      const a = m.o * (0.4 + 0.6 * (0.5 + 0.5 * Math.sin(m.pulse)));
+      const drawSize = m.r * 14;
+      ctx.globalAlpha = a;
+      ctx.drawImage(glowSprite, x - drawSize / 2, y - drawSize / 2, drawSize, drawSize);
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
   }
 
   resize();
-  draw();
-  window.addEventListener("resize", resize, { passive: true });
-  window.addEventListener("pagehide", () => window.cancelAnimationFrame(raf));
+  init();
+
+  let lastInitWidth = window.innerWidth;
+  window.addEventListener("resize", () => {
+    resize();
+    if (window.innerWidth !== lastInitWidth) {
+      lastInitWidth = window.innerWidth;
+      init();
+    }
+  }, { passive: true });
+
+  requestAnimationFrame(frame);
 })();
