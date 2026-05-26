@@ -41,6 +41,19 @@
   <main class="splash">
     <div class="splash-center">
       <button class="splash-unicorn-btn" id="splash-unicorn" aria-label="The Golden Unicorns" type="button">
+        <!-- Feature flag: set data-unicorn-video to "on" or "off" -->
+        <span id="unicorn-video-flag" data-unicorn-video="off" hidden></span>
+        <video
+          class="splash-logo-video"
+          id="splash-logo-video"
+          playsinline
+          muted
+          loop
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="https://video.wixstatic.com/video/990534_aef156c660e94b1f9180166b4c588ee8/360p/mp4/file.mp4" type="video/mp4">
+        </video>
         <span class="splash-logo-motion" aria-hidden="true"></span>
         <img class="splash-logo" id="splash-logo" src="assets/images/unicorn-filled.png" alt="">
       </button>

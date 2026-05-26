@@ -16,12 +16,23 @@
   // One-click unicorn reveal + visual feedback
   const splashUnicorn = document.getElementById("splash-unicorn");
   const splashNav = document.getElementById("splash-nav");
+  const splashVideo = document.getElementById("splash-logo-video");
+  const splashVideoFlag = document.getElementById("unicorn-video-flag");
   if (splashUnicorn && splashNav) {
     splashUnicorn.addEventListener("click", () => {
       splashUnicorn.classList.remove("is-reacting");
       void splashUnicorn.offsetWidth;
       splashUnicorn.classList.add("is-reacting");
       splashUnicorn.classList.add("is-playing");
+
+      const videoEnabled = (splashVideoFlag?.dataset?.unicornVideo || "off") === "on";
+      if (videoEnabled && splashVideo) {
+        splashUnicorn.classList.add("has-video");
+        splashVideo.currentTime = 0;
+        splashVideo.play().catch(() => {});
+      } else {
+        splashUnicorn.classList.remove("has-video");
+      }
 
       splashNav.classList.add("is-revealed");
       splashNav.removeAttribute("aria-hidden");
