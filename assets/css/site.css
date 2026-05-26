@@ -402,7 +402,6 @@ iframe {
   -webkit-tap-highlight-color: transparent;
   border-radius: 50%;
   position: relative;
-  isolation: isolate;
 }
 
 .splash-unicorn-btn:focus-visible {
@@ -413,89 +412,7 @@ iframe {
 .splash-unicorn-btn.is-reacting .splash-logo {
   animation:
     logo-breathe 6s ease-in-out infinite,
-    logo-react 380ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.splash-logo-halo,
-.splash-logo-stars,
-.splash-logo-motion {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.splash-logo-halo {
-  inset: -12%;
-  opacity: 0;
-  transform: scale(0.78);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(240, 208, 96, 0.36) 0 28%, rgba(232, 193, 74, 0.16) 28% 48%, rgba(232, 193, 74, 0) 72%);
-  filter: blur(18px);
-  transition: opacity 420ms var(--ease), transform 420ms var(--ease);
-}
-
-.splash-logo-stars {
-  inset: -14%;
-  opacity: 0;
-  transform: scale(0.9) rotate(-8deg);
-  transition: opacity 260ms var(--ease), transform 620ms var(--ease);
-  background:
-    radial-gradient(circle at 18% 34%, rgba(255, 236, 170, 0.9) 0 0.8%, rgba(255, 236, 170, 0) 3.2%),
-    radial-gradient(circle at 80% 20%, rgba(255, 236, 170, 0.82) 0 0.6%, rgba(255, 236, 170, 0) 2.4%),
-    radial-gradient(circle at 84% 72%, rgba(232, 193, 74, 0.72) 0 0.7%, rgba(232, 193, 74, 0) 2.9%),
-    radial-gradient(circle at 28% 82%, rgba(232, 193, 74, 0.68) 0 0.55%, rgba(232, 193, 74, 0) 2.4%);
-}
-
-.splash-logo-motion {
-  opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 420ms var(--ease), transform 420ms var(--ease);
-  background:
-    radial-gradient(circle at 20% 24%, rgba(255, 232, 160, 0.55) 0 12%, rgba(255, 232, 160, 0) 30%),
-    radial-gradient(circle at 72% 40%, rgba(232, 193, 74, 0.46) 0 10%, rgba(232, 193, 74, 0) 32%),
-    radial-gradient(circle at 46% 72%, rgba(212, 168, 67, 0.42) 0 9%, rgba(212, 168, 67, 0) 28%),
-    url("../images/hero-bg.png");
-  background-size: 180% 180%, 170% 170%, 160% 160%, cover;
-  background-position: 0% 50%, 100% 0%, 30% 100%, center;
-  mix-blend-mode: screen;
-  -webkit-mask-image: url("../images/unicorn-filled.png");
-  mask-image: url("../images/unicorn-filled.png");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-.splash-unicorn-btn.is-awakening .splash-logo-halo {
-  opacity: 0.96;
-  transform: scale(1.05);
-  animation: halo-bloom 880ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.splash-unicorn-btn.is-awakening .splash-logo-stars {
-  opacity: 1;
-  transform: scale(1.04) rotate(8deg);
-  animation: star-burst 900ms cubic-bezier(0.18, 1, 0.36, 1);
-}
-
-.splash-unicorn-btn.is-awakening .splash-logo-motion {
-  opacity: 0.95;
-  transform: scale(1.02);
-  animation: unicorn-shimmer 920ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.splash-unicorn-btn.is-awakened .splash-logo-motion {
-  opacity: 0.34;
-  transform: scale(1);
-  animation: unicorn-glow 8.5s ease-in-out infinite;
-}
-
-.splash-unicorn-btn.is-awakened .splash-logo-halo {
-  opacity: 0.4;
-  transform: scale(1);
+    logo-click 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .splash-logo {
@@ -511,12 +428,6 @@ iframe {
 
 .splash-logo.is-loaded {
   opacity: 1;
-}
-
-.splash-unicorn-btn.is-awakening .splash-logo,
-.splash-unicorn-btn.is-awakened .splash-logo {
-  opacity: 1;
-  filter: drop-shadow(0 0 56px rgba(232, 193, 74, 0.42));
 }
 
 .splash-wordmark {
@@ -591,59 +502,15 @@ iframe {
   }
 }
 
-@keyframes halo-bloom {
+@keyframes logo-click {
   0% {
-    opacity: 0;
-    transform: scale(0.72);
-  }
-  35% {
-    opacity: 0.98;
-  }
-  100% {
-    opacity: 0.22;
-    transform: scale(1.18);
-  }
-}
-
-@keyframes star-burst {
-  0% {
-    opacity: 0;
-    transform: scale(0.88) rotate(-10deg);
-    filter: blur(0);
+    transform: scale(1);
   }
   40% {
-    opacity: 1;
+    transform: scale(0.965);
   }
   100% {
-    opacity: 0;
-    transform: scale(1.16) rotate(10deg);
-    filter: blur(1px);
-  }
-}
-
-@keyframes unicorn-shimmer {
-  0% {
-    background-position: 0% 50%, 100% 0%, 30% 100%, center;
-    filter: saturate(1) brightness(0.92);
-  }
-  50% {
-    background-position: 100% 40%, 0% 80%, 60% 20%, center;
-    filter: saturate(1.14) brightness(1.12);
-  }
-  100% {
-    background-position: 0% 50%, 100% 0%, 30% 100%, center;
-    filter: saturate(1) brightness(0.92);
-  }
-}
-
-@keyframes unicorn-glow {
-  0%, 100% {
-    background-position: 0% 50%, 100% 0%, 30% 100%, center;
-    filter: saturate(1) brightness(0.92);
-  }
-  50% {
-    background-position: 100% 40%, 0% 80%, 60% 20%, center;
-    filter: saturate(1.08) brightness(1.03);
+    transform: scale(1);
   }
 }
 

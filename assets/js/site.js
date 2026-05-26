@@ -13,7 +13,7 @@
   const splashBottom = document.querySelector(".splash-bottom");
   if (splashLogo) requestAnimationFrame(() => splashLogo.classList.add("is-loaded"));
 
-  // One-click unicorn reveal + golden reaction
+  // One-click unicorn reveal + simple tap reaction
   const splashUnicorn = document.getElementById("splash-unicorn");
   const splashNav = document.getElementById("splash-nav");
   if (splashUnicorn && splashNav) {
@@ -22,10 +22,10 @@
       splashUnicorn.classList.remove("is-reacting");
       clearTimeout(reactionTimer);
       void splashUnicorn.offsetWidth;
-      splashUnicorn.classList.add("is-reacting", "is-awakening", "is-awakened");
+      splashUnicorn.classList.add("is-reacting");
       reactionTimer = window.setTimeout(() => {
-        splashUnicorn.classList.remove("is-reacting", "is-awakening");
-      }, 950);
+        splashUnicorn.classList.remove("is-reacting");
+      }, 320);
 
       splashNav.classList.add("is-revealed");
       splashNav.removeAttribute("aria-hidden");
