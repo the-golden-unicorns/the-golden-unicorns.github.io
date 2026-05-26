@@ -21,6 +21,7 @@
       splashUnicorn.classList.remove("is-reacting");
       void splashUnicorn.offsetWidth;
       splashUnicorn.classList.add("is-reacting");
+      splashUnicorn.classList.add("is-playing");
 
       splashNav.classList.add("is-revealed");
       splashNav.removeAttribute("aria-hidden");
