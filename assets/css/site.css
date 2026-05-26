@@ -373,11 +373,10 @@ iframe {
 }
 
 .splash-logo {
-  /* Desktop: size by viewport height so the logo fills the screen */
-  height: min(60vh, 520px);
+  height: min(52vh, 460px);
   width: auto;
-  max-width: min(82vw, 520px);
-  min-height: 160px;
+  max-width: min(78vw, 460px);
+  min-height: 140px;
   display: block;
   animation: logo-breathe 6s ease-in-out infinite;
   opacity: 0;
@@ -399,10 +398,10 @@ iframe {
   text-align: center;
   white-space: nowrap;
   opacity: 0;
-  transition: opacity 1.6s ease 1.1s;
+  transition: opacity 0.9s var(--ease);
 }
 
-.splash-wordmark.is-loaded {
+.splash-wordmark.is-revealed {
   opacity: 1;
 }
 
@@ -416,6 +415,12 @@ iframe {
   display: flex;
   justify-content: center;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.9s var(--ease);
+}
+
+.splash-bottom.is-revealed {
+  opacity: 1;
 }
 
 .splash-instagram {
@@ -871,7 +876,7 @@ h2 em,
 
   .splash-logo {
     height: auto;
-    width: min(72vw, 300px);
+    width: min(62vw, 260px);
     max-width: none;
   }
 
@@ -911,10 +916,12 @@ h2 em,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .splash-logo,
-  .splash-wordmark {
-    opacity: 1;
+  .splash-logo {
+    opacity: 0;
     transition: none;
+  }
+  .splash-logo.is-loaded {
+    opacity: 1;
   }
 
   *,
