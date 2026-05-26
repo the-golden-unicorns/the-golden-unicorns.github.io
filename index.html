@@ -25,30 +25,35 @@
 <div class="ambient" aria-hidden="true"></div>
 <canvas id="motes" aria-hidden="true"></canvas>
 <div class="site-shell">
-  <nav class="site-nav" aria-label="Primary">
-    <a class="brand" href="./" aria-label="The Golden Unicorns home">
-      <img src="assets/images/unicorn.png" alt="" width="22" height="22">
-      <span>The Golden Unicorns</span>
-    </a>
-    <div class="nav-links">
+
+  <nav class="splash-nav" id="splash-nav" aria-label="Primary" aria-hidden="true">
+    <div class="splash-nav-links">
       <a href="manifesto/">Manifesto</a>
+      <span class="pipe" aria-hidden="true">|</span>
       <a href="membership/">Membership</a>
+      <span class="pipe" aria-hidden="true">|</span>
       <a href="events/">Events</a>
-      <a href="contact/">Contact</a>
-      <a class="nav-icon" href="https://www.instagram.com/thegoldenunicorns_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none"/>
-        </svg>
-      </a>
     </div>
-    <a class="nav-cta" href="https://membership.thegoldenunicorns.com/apply/">Apply</a>
   </nav>
 
   <main class="splash">
-    <img class="splash-logo" src="assets/images/unicorn-filled.png" alt="The Golden Unicorns">
+    <div class="splash-center">
+      <button class="splash-unicorn-btn" id="splash-unicorn" aria-label="The Golden Unicorns" type="button">
+        <img class="splash-logo" id="splash-logo" src="assets/images/unicorn-filled.png" alt="">
+      </button>
+      <p class="splash-wordmark" id="splash-wordmark">The Golden Unicorns</p>
+    </div>
   </main>
+
+  <div class="splash-bottom">
+    <a class="splash-instagram" href="https://www.instagram.com/thegoldenunicorns_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+  </div>
 
   <footer class="splash-footer">
     By entering this website you agree with our <a href="terms/">Terms and Conditions</a>

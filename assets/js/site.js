@@ -7,6 +7,30 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  // Splash logo + wordmark fade in on load
+  const splashLogo = document.getElementById("splash-logo");
+  const splashWordmark = document.getElementById("splash-wordmark");
+  if (splashLogo) requestAnimationFrame(() => splashLogo.classList.add("is-loaded"));
+  if (splashWordmark) requestAnimationFrame(() => splashWordmark.classList.add("is-loaded"));
+
+  // Triple-click unicorn to reveal the nav
+  const splashUnicorn = document.getElementById("splash-unicorn");
+  const splashNav = document.getElementById("splash-nav");
+  if (splashUnicorn && splashNav) {
+    let clicks = 0;
+    let timer;
+    splashUnicorn.addEventListener("click", () => {
+      clicks++;
+      clearTimeout(timer);
+      timer = setTimeout(() => { clicks = 0; }, 900);
+      if (clicks >= 3) {
+        splashNav.classList.add("is-revealed");
+        splashNav.removeAttribute("aria-hidden");
+        clicks = 0;
+      }
+    });
+  }
+
   const revealItems = Array.from(document.querySelectorAll(".reveal"));
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(

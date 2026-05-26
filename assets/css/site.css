@@ -291,6 +291,56 @@ iframe {
   animation: none;
 }
 
+/* ─── SPLASH NAV (homepage only — hidden until 3 clicks) ─── */
+.splash-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.9s var(--ease);
+}
+
+.splash-nav.is-revealed {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.splash-nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.7rem, 2vw, 1.6rem);
+}
+
+.splash-nav-links a {
+  font-family: "Jost", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+}
+
+.splash-nav-links a:hover {
+  color: var(--gold-pale);
+}
+
+.pipe {
+  color: var(--text-mute);
+  font-family: "Jost", sans-serif;
+  font-size: 0.52rem;
+  user-select: none;
+  line-height: 1;
+}
+
 /* ─── SPLASH (homepage only) ─── */
 .splash {
   display: flex;
@@ -298,21 +348,87 @@ iframe {
   justify-content: center;
   min-height: 100vh;
   min-height: 100svh;
-  /* push the logo's center below the fixed nav so it sits in the
-     visible area, not behind the transparent nav gradient */
   padding: var(--nav-h) 1.5rem 3.5rem;
   box-sizing: border-box;
 }
 
+.splash-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.2rem, 2.5vh, 2.2rem);
+}
+
+.splash-unicorn-btn {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 50%;
+}
+
+.splash-unicorn-btn:focus-visible {
+  outline: 1px solid rgba(212, 168, 67, 0.4);
+  outline-offset: 12px;
+}
+
 .splash-logo {
-  /* Desktop is landscape — size by viewport height so the logo
-     fills the screen the way the Wix site does */
+  /* Desktop: size by viewport height so the logo fills the screen */
   height: min(60vh, 520px);
   width: auto;
   max-width: min(82vw, 520px);
   min-height: 160px;
   display: block;
   animation: logo-breathe 6s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 1.6s ease 0.15s;
+}
+
+.splash-logo.is-loaded {
+  opacity: 1;
+}
+
+.splash-wordmark {
+  margin: 0;
+  font-family: "Aetherius", "Cormorant Garamond", serif;
+  font-size: clamp(1.05rem, 2.8vw, 1.9rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: 0 0 24px rgba(212, 168, 67, 0.28);
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 1.6s ease 1.1s;
+}
+
+.splash-wordmark.is-loaded {
+  opacity: 1;
+}
+
+/* ─── SPLASH BOTTOM (Instagram icon) ─── */
+.splash-bottom {
+  position: fixed;
+  bottom: 4rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.splash-instagram {
+  pointer-events: auto;
+  display: inline-flex;
+  padding: 0.5rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+}
+
+.splash-instagram:hover {
+  color: var(--gold-pale);
 }
 
 @keyframes logo-breathe {
@@ -748,18 +864,24 @@ h2 em,
     min-height: auto;
   }
 
-  /* Splash: the mobile nav wraps to ~3 rows, so push logo below that
-     and size it to fill the screen the way the Wix site does */
   .splash {
-    padding-top: 130px;
+    padding-top: var(--nav-h);
     padding-bottom: 3rem;
   }
 
   .splash-logo {
-    /* Mobile is portrait — switch to width-based so it fills the screen */
     height: auto;
     width: min(72vw, 300px);
     max-width: none;
+  }
+
+  .splash-wordmark {
+    font-size: clamp(0.78rem, 4.5vw, 1.1rem);
+    letter-spacing: 0.24em;
+  }
+
+  .splash-bottom {
+    bottom: 3.5rem;
   }
 }
 
@@ -789,6 +911,12 @@ h2 em,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .splash-logo,
+  .splash-wordmark {
+    opacity: 1;
+    transition: none;
+  }
+
   *,
   *::before,
   *::after {
