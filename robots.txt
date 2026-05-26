@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.thegoldenunicorns.com/sitemap.xml
+
