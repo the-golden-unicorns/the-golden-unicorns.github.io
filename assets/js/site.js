@@ -7,29 +7,25 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  // Unicorn fades in on load; wordmark + Instagram stay hidden until triple-click
+  // Unicorn fades in on load; wordmark + Instagram are revealed on first click
   const splashLogo = document.getElementById("splash-logo");
   const splashWordmark = document.getElementById("splash-wordmark");
   const splashBottom = document.querySelector(".splash-bottom");
   if (splashLogo) requestAnimationFrame(() => splashLogo.classList.add("is-loaded"));
 
-  // Triple-click unicorn to reveal nav, wordmark, and Instagram
+  // One-click unicorn reveal + visual feedback
   const splashUnicorn = document.getElementById("splash-unicorn");
   const splashNav = document.getElementById("splash-nav");
   if (splashUnicorn && splashNav) {
-    let clicks = 0;
-    let timer;
     splashUnicorn.addEventListener("click", () => {
-      clicks++;
-      clearTimeout(timer);
-      timer = setTimeout(() => { clicks = 0; }, 900);
-      if (clicks >= 3) {
-        splashNav.classList.add("is-revealed");
-        splashNav.removeAttribute("aria-hidden");
-        if (splashWordmark) splashWordmark.classList.add("is-revealed");
-        if (splashBottom) splashBottom.classList.add("is-revealed");
-        clicks = 0;
-      }
+      splashUnicorn.classList.remove("is-reacting");
+      void splashUnicorn.offsetWidth;
+      splashUnicorn.classList.add("is-reacting");
+
+      splashNav.classList.add("is-revealed");
+      splashNav.removeAttribute("aria-hidden");
+      if (splashWordmark) splashWordmark.classList.add("is-revealed");
+      if (splashBottom) splashBottom.classList.add("is-revealed");
     });
   }
 
