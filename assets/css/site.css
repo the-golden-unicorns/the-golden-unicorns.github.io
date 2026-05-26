@@ -773,8 +773,30 @@ h2 em,
   font-weight: 300;
 }
 
+.legal h3 {
+  margin-top: 1.5rem;
+  color: var(--gold-pale);
+  font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+  font-weight: 300;
+}
+
 .legal ul {
   padding-left: 1.15rem;
+  margin-bottom: 1.2rem;
+}
+
+.legal li {
+  margin-bottom: 0.45rem;
+}
+
+.body-copy ul {
+  padding-left: 1.2rem;
+  color: var(--text-soft);
+  margin-bottom: 1.2rem;
+}
+
+.body-copy li {
+  margin-bottom: 0.5rem;
 }
 
 .cta-section {
