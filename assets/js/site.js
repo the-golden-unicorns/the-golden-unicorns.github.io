@@ -13,29 +13,23 @@
   const splashBottom = document.querySelector(".splash-bottom");
   if (splashLogo) requestAnimationFrame(() => splashLogo.classList.add("is-loaded"));
 
-  // One-click unicorn reveal + visual feedback
+  // One-click unicorn reveal + golden reaction
   const splashUnicorn = document.getElementById("splash-unicorn");
   const splashNav = document.getElementById("splash-nav");
-  const splashVideo = document.getElementById("splash-logo-video");
-  const splashVideoFlag = document.getElementById("unicorn-video-flag");
   if (splashUnicorn && splashNav) {
+    let reactionTimer;
     splashUnicorn.addEventListener("click", () => {
       splashUnicorn.classList.remove("is-reacting");
+      clearTimeout(reactionTimer);
       void splashUnicorn.offsetWidth;
-      splashUnicorn.classList.add("is-reacting");
-      splashUnicorn.classList.add("is-playing");
-
-      const videoEnabled = (splashVideoFlag?.dataset?.unicornVideo || "off") === "on";
-      if (videoEnabled && splashVideo) {
-        splashUnicorn.classList.add("has-video");
-        splashVideo.currentTime = 0;
-        splashVideo.play().catch(() => {});
-      } else {
-        splashUnicorn.classList.remove("has-video");
-      }
+      splashUnicorn.classList.add("is-reacting", "is-awakening", "is-awakened");
+      reactionTimer = window.setTimeout(() => {
+        splashUnicorn.classList.remove("is-reacting", "is-awakening");
+      }, 950);
 
       splashNav.classList.add("is-revealed");
       splashNav.removeAttribute("aria-hidden");
+      splashUnicorn.setAttribute("aria-expanded", "true");
       if (splashWordmark) splashWordmark.classList.add("is-revealed");
       if (splashBottom) splashBottom.classList.add("is-revealed");
     });
