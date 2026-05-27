@@ -417,7 +417,7 @@ iframe {
   display: block;
   animation: logo-breathe 6s ease-in-out infinite;
   opacity: 0;
-  transition: opacity 1.9s linear;
+  transition: opacity 1.9s linear 1.2s;
 }
 
 .splash-logo.is-loaded {
