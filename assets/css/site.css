@@ -409,12 +409,6 @@ iframe {
   outline-offset: 12px;
 }
 
-.splash-unicorn-btn.is-reacting .splash-logo {
-  animation:
-    logo-breathe 6s ease-in-out infinite,
-    logo-click 300ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
 .splash-logo {
   height: min(52vh, 460px);
   width: auto;
@@ -423,7 +417,7 @@ iframe {
   display: block;
   animation: logo-breathe 6s ease-in-out infinite;
   opacity: 0;
-  transition: opacity 1.6s ease 0.15s;
+  transition: opacity 0.8s ease 0.1s;
 }
 
 .splash-logo.is-loaded {
@@ -490,29 +484,6 @@ iframe {
   }
 }
 
-@keyframes logo-react {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  45% {
-    transform: translate3d(0, -5px, 0) scale(1.02) rotate(-1deg);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes logo-click {
-  0% {
-    transform: scale(1);
-  }
-  40% {
-    transform: scale(0.965);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 
 .splash-footer {
   position: fixed;

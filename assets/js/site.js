@@ -7,26 +7,17 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  // Unicorn fades in on load; wordmark + Instagram are revealed on first click
+  // Unicorn fades in on load; nav/wordmark/Instagram revealed on click
   const splashLogo = document.getElementById("splash-logo");
   const splashWordmark = document.getElementById("splash-wordmark");
   const splashBottom = document.querySelector(".splash-bottom");
   if (splashLogo) requestAnimationFrame(() => splashLogo.classList.add("is-loaded"));
 
-  // One-click unicorn reveal + simple tap reaction
+  // Click unicorn to reveal nav — no unicorn movement, nav fades in only
   const splashUnicorn = document.getElementById("splash-unicorn");
   const splashNav = document.getElementById("splash-nav");
   if (splashUnicorn && splashNav) {
-    let reactionTimer;
     splashUnicorn.addEventListener("click", () => {
-      splashUnicorn.classList.remove("is-reacting");
-      clearTimeout(reactionTimer);
-      void splashUnicorn.offsetWidth;
-      splashUnicorn.classList.add("is-reacting");
-      reactionTimer = window.setTimeout(() => {
-        splashUnicorn.classList.remove("is-reacting");
-      }, 320);
-
       splashNav.classList.add("is-revealed");
       splashNav.removeAttribute("aria-hidden");
       splashUnicorn.setAttribute("aria-expanded", "true");
