@@ -1,0 +1,62 @@
+name: Website E2E smoke
+
+# Runs the Playwright smoke suite against the LIVE site:
+#   - after each Pages deploy completes (so we test what actually shipped)
+#   - nightly (catches CDN/DNS/cert drift)
+#   - manually, optionally against a different base URL
+on:
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types: [completed]
+  schedule:
+    - cron: '0 7 * * *'   # nightly 07:00 UTC
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Base URL to test'
+        required: false
+        default: 'https://thegoldenunicorns.com'
+
+jobs:
+  e2e:
+    name: Smoke test the live website
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # For the post-deploy trigger, only run if the deploy actually succeeded.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright (chromium)
+        run: |
+          npm install
+          npx playwright install --with-deps chromium
+
+      - name: Run website smoke suite
+        env:
+          WEBSITE_BASE_URL: ${{ github.event.inputs.base_url || 'https://thegoldenunicorns.com' }}
+        run: npm run test:e2e
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: playwright-report/
+          retention-days: 14
+
+      - name: Alert Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_OPS_ALERTS_WEBHOOK }}
+        run: |
+          if [ -n "$SLACK_WEBHOOK_URL" ]; then
+            curl -s -X POST -H 'Content-type: application/json' \
+              --data "{\"text\":\":x: Website E2E smoke failed on thegoldenunicorns.com — ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"}" \
+              "$SLACK_WEBHOOK_URL"
+          fi
