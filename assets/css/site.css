@@ -569,6 +569,7 @@ iframe {
 
 .hero-logo {
   width: min(46vw, 285px);
+  height: auto;
   min-width: 150px;
   margin: 0 auto clamp(2.2rem, 5vw, 4rem);
   display: block;
