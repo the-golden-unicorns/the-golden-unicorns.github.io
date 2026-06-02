@@ -28,7 +28,12 @@
       gap: 0.7rem;
       text-align: left;
       padding: clamp(0.85rem, 2vw, 1.05rem) clamp(1.5rem, 3.4vw, 2.1rem);
+      /* Brand gold (not the pale gold inherited from .button, which reads as
+         near-white on black). Applies to the icon (currentColor) + text. */
+      color: var(--gold);
     }
+    .store-chip:hover,
+    .store-chip:focus-visible { color: var(--gold-light); }
     .store-chip svg { flex: 0 0 auto; }
     .store-chip .chip-lines { display: flex; flex-direction: column; line-height: 1.05; }
     .store-chip .chip-kicker {
