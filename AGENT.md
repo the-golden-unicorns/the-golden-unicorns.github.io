@@ -1,5 +1,7 @@
 # Agent Notes
 
+> **Values & mission bind every agent here — read [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) first.** This file is operational notes only.
+
 ## GitHub Pages Deployment Source
 - Public site deploys from this repository: `the-golden-unicorns/the-golden-unicorns.github.io`.
 - Push website changes directly here (current default branch: `main`) to publish.
