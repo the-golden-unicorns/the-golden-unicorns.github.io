@@ -1,4 +1,87 @@
 (function () {
+  const ENDPOINT = "https://dash.thegoldenunicorns.com/api/founder-signal-events";
+  const TRACKED_CTA_CLASSES = ["nav-cta", "button"];
+
+  function founderTrackingEnabled() {
+    return /(^|\.)thegoldenunicorns\.com$/i.test(window.location.hostname);
+  }
+
+  function founderId(storage, key, prefix) {
+    try {
+      const existing = storage.getItem(key);
+      if (existing) return existing;
+      const fresh = prefix + "_" + Math.random().toString(36).slice(2, 12);
+      storage.setItem(key, fresh);
+      return fresh;
+    } catch (err) {
+      return prefix + "_" + Math.random().toString(36).slice(2, 12);
+    }
+  }
+
+  function sendFounderEvent(eventName, extra) {
+    if (!founderTrackingEnabled()) return;
+
+    const payload = JSON.stringify({
+      source: "public_site",
+      event_name: eventName,
+      session_id: founderId(window.sessionStorage, "tgu_public_founder_session_id", "ps"),
+      anonymous_id: founderId(window.localStorage, "tgu_public_founder_anonymous_id", "pa"),
+      page_path: window.location.pathname,
+      page_title: document.title,
+      ...(extra || {}),
+    });
+
+    if (navigator.sendBeacon) {
+      try {
+        navigator.sendBeacon(ENDPOINT, new Blob([payload], { type: "application/json" }));
+        return;
+      } catch (err) {
+        // Fall back to fetch below.
+      }
+    }
+
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+      keepalive: true,
+      mode: "cors",
+    }).catch(() => {});
+  }
+
+  function slug(value) {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 80);
+  }
+
+  sendFounderEvent("page_view");
+
+  document.addEventListener("click", event => {
+    const anchor = event.target && event.target.closest ? event.target.closest("a[href]") : null;
+    if (!anchor) return;
+
+    const href = anchor.getAttribute("href") || "";
+    if (!href || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("#")) {
+      return;
+    }
+
+    const isApply = /membership\.thegoldenunicorns\.com\/apply/i.test(anchor.href || href) || /\/apply\/?$/i.test(href);
+    const isTrackedCta = isApply || TRACKED_CTA_CLASSES.some(className => anchor.classList.contains(className));
+
+    if (!isTrackedCta) return;
+
+    sendFounderEvent(isApply ? "apply_click" : "cta_click", {
+      cta_key: isApply ? (slug(anchor.textContent) || "apply") + "_apply" : (slug(anchor.textContent) || slug(href) || "cta"),
+      meta: {
+        href: anchor.href || href,
+      },
+    });
+  }, true);
+
   const nav = document.querySelector(".site-nav");
   const onScroll = () => {
     if (!nav) return;
