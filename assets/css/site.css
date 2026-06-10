@@ -164,7 +164,6 @@ iframe {
   font-family: "Aetherius", "Cormorant Garamond", serif;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(212, 168, 67, 0.35);
 }
 
 .brand span {
@@ -390,7 +389,6 @@ iframe {
   max-width: min(78vw, 460px);
   min-height: 140px;
   display: block;
-  animation: logo-breathe 6s ease-in-out infinite;
   opacity: 0;
   transition: opacity 1.9s linear 1.2s;
 }
@@ -406,7 +404,6 @@ iframe {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
-  text-shadow: 0 0 24px rgba(212, 168, 67, 0.28);
   text-align: center;
   white-space: nowrap;
   opacity: 0;
@@ -447,18 +444,6 @@ iframe {
 .splash-instagram:hover {
   color: var(--gold-pale);
 }
-
-@keyframes logo-breathe {
-  0%, 100% {
-    filter: drop-shadow(0 0 40px rgba(212, 168, 67, 0.28));
-    transform: scale(1);
-  }
-  50% {
-    filter: drop-shadow(0 0 72px rgba(212, 168, 67, 0.50));
-    transform: scale(1.012);
-  }
-}
-
 
 .splash-footer {
   position: fixed;
@@ -509,13 +494,12 @@ iframe {
   text-decoration: none;
   border-bottom: 1px solid rgba(212, 168, 67, 0.28);
   padding-bottom: 3px;
-  transition: color 0.25s var(--ease), border-color 0.25s var(--ease), text-shadow 0.25s var(--ease);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 
 .oracle-address:hover {
   color: var(--gold-pale);
   border-color: var(--gold);
-  text-shadow: 0 0 22px rgba(212, 168, 67, 0.45);
 }
 
 /* ─── CONTENT PAGES ─── */
@@ -548,7 +532,6 @@ iframe {
   min-width: 150px;
   margin: 0 auto clamp(2.2rem, 5vw, 4rem);
   display: block;
-  filter: drop-shadow(0 0 36px rgba(212, 168, 67, 0.25));
 }
 
 .kicker,
@@ -616,6 +599,10 @@ h2 em,
 .section.compact {
   padding-top: clamp(2.5rem, 5vw, 4rem);
   padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section.flush-top {
+  padding-top: clamp(1rem, 2vw, 1.6rem);
 }
 
 .section-title {
@@ -833,16 +820,16 @@ h2 em,
 }
 
 .section-tight {
-  padding-top: clamp(2.2rem, 4vw, 3.2rem);
-  padding-bottom: clamp(2.2rem, 4vw, 3.2rem);
+  padding-top: clamp(1.4rem, 3vw, 2.2rem);
+  padding-bottom: clamp(1.4rem, 3vw, 2.2rem);
 }
 
 .manifesto-section + .manifesto-section {
-  padding-top: clamp(2.4rem, 4vw, 3.5rem);
+  padding-top: clamp(1rem, 2vw, 1.6rem);
 }
 
 .manifesto-signoff {
-  padding-top: clamp(2.2rem, 4vw, 3.2rem);
+  padding-top: clamp(1.5rem, 3vw, 2.2rem);
 }
 
 .stack-md > * + * {
@@ -856,6 +843,31 @@ h2 em,
   font-size: clamp(1rem, 1.8vw, 1.15rem);
   line-height: 1.7;
   text-align: center;
+}
+
+.page-intro {
+  text-align: center;
+}
+
+.page-intro .section-title {
+  margin-bottom: 0.9rem;
+}
+
+.page-intro .body-copy {
+  width: min(100%, 760px);
+}
+
+.page-intro .hero-actions {
+  margin-top: 1.7rem;
+}
+
+.cta-gap {
+  padding-top: clamp(3rem, 7vw, 5rem);
+  padding-bottom: clamp(2.2rem, 5vw, 3.4rem);
+}
+
+.faq-section-tight {
+  padding-top: clamp(1.2rem, 3vw, 2rem);
 }
 
 /* ─── FOOTER (content pages) ─── */
@@ -889,7 +901,6 @@ h2 em,
   color: var(--gold);
   font-family: "Aetherius", "Cormorant Garamond", serif;
   font-size: 0.82rem;
-  text-shadow: 0 0 14px rgba(212, 168, 67, 0.35);
 }
 
 .reveal {
