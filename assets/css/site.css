@@ -90,15 +90,15 @@ iframe {
 .ambient::before {
   content: ""; position: absolute; inset: -10%;
   background: radial-gradient(ellipse at 30% 15%,
-    rgba(212, 168, 67, 0.02) 0%,
-    rgba(212, 168, 67, 0.005) 24%,
+    rgba(212, 168, 67, 0.012) 0%,
+    rgba(212, 168, 67, 0.003) 22%,
     transparent 58%);
   animation: drift 70s ease-in-out infinite alternate;
 }
 .ambient::after {
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(ellipse at 75% 90%,
-    rgba(212, 168, 67, 0.012) 0%,
+    rgba(212, 168, 67, 0.008) 0%,
     transparent 55%);
   animation: drift 110s ease-in-out infinite alternate-reverse;
 }
@@ -618,8 +618,8 @@ h2 em,
 }
 
 .section.flow-section {
-  padding-top: clamp(1rem, 2vw, 1.45rem);
-  padding-bottom: clamp(1rem, 2vw, 1.45rem);
+  padding-top: clamp(1.05rem, 1.9vw, 1.5rem);
+  padding-bottom: clamp(1.05rem, 1.9vw, 1.5rem);
 }
 
 .section.flush-top {
@@ -659,7 +659,7 @@ h2 em,
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
-  margin-top: 2.2rem;
+  margin-top: 1.65rem;
   border: 1px solid var(--line-soft);
   background: var(--line-soft);
 }
@@ -748,7 +748,7 @@ h2 em,
 }
 
 .list-card {
-  padding: 0.88rem 0;
+  padding: 0.96rem 0;
   border-bottom: 1px solid var(--line-soft);
 }
 
