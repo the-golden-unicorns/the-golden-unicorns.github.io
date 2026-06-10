@@ -598,6 +598,11 @@ h2 em,
   padding-bottom: clamp(1.15rem, 2.2vw, 1.7rem);
 }
 
+.section.flow-section {
+  padding-top: clamp(1rem, 2vw, 1.45rem);
+  padding-bottom: clamp(1rem, 2vw, 1.45rem);
+}
+
 .section.flush-top {
   padding-top: clamp(1rem, 2vw, 1.6rem);
 }
@@ -891,6 +896,19 @@ h2 em,
 .section.tight-stack {
   padding-top: clamp(0.85rem, 1.7vw, 1.15rem);
   padding-bottom: clamp(0.85rem, 1.7vw, 1.15rem);
+}
+
+.content-block > * + * {
+  margin-top: 1.4rem;
+}
+
+.content-block .eyebrow {
+  margin-bottom: 0.65rem;
+}
+
+.content-block .body-copy p,
+.content-block p {
+  margin-bottom: 0;
 }
 
 .cta-gap {
