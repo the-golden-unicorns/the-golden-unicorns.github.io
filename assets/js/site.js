@@ -120,7 +120,12 @@
           }
         });
       },
-      { threshold: 0.12 }
+      // threshold:0 + a bottom rootMargin reveals an element once its top
+      // has scrolled a little into view. A percentage threshold (was 0.12)
+      // can NEVER be reached by an element taller than the viewport — e.g. the
+      // 16,900px /terms/ .legal block maxes out at ~5% visibility, so it
+      // stayed at opacity:0 forever. This works for any element height.
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
     revealItems.forEach(item => observer.observe(item));
   } else {
