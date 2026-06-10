@@ -870,6 +870,10 @@ h2 em,
   margin-top: 1.6rem;
 }
 
+.manifesto-copy .reveal p + p {
+  margin-top: 1.15rem;
+}
+
 .manifesto-copy .eyebrow,
 .manifesto-core .eyebrow {
   margin-bottom: 0.65rem;
@@ -902,6 +906,10 @@ h2 em,
 
 .page-intro.intro-title-space .section-title {
   margin-bottom: 0.95rem;
+}
+
+.page-intro.aligned-intro {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
 }
 
 .page-intro .hero-actions {
@@ -945,6 +953,10 @@ h2 em,
   padding-top: clamp(0.45rem, 1vw, 0.75rem) !important;
 }
 
+.events-copy-block .eyebrow {
+  margin-bottom: 1rem;
+}
+
 .section.tight-stack {
   padding-top: clamp(0.85rem, 1.7vw, 1.15rem);
   padding-bottom: clamp(0.85rem, 1.7vw, 1.15rem);
@@ -966,6 +978,11 @@ h2 em,
 .cta-gap {
   padding-top: clamp(2.5rem, 5vw, 3.6rem);
   padding-bottom: clamp(1.4rem, 3vw, 2rem);
+}
+
+.events-quote-cta {
+  padding-top: clamp(2rem, 4vw, 2.8rem);
+  padding-bottom: clamp(2rem, 4vw, 2.8rem);
 }
 
 .project-membership-cta {
