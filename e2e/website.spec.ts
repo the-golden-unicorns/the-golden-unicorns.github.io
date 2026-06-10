@@ -17,7 +17,7 @@ const PAGES: { path: string; titleContains: string }[] = [
   { path: '/',            titleContains: 'The Golden Unicorns' },
   { path: '/about/',      titleContains: 'The Golden Unicorns' },
   { path: '/manifesto/',  titleContains: 'The Golden Unicorns' },
-  { path: '/membership/', titleContains: 'Membership' },
+  { path: '/membership/', titleContains: 'The Golden Unicorns' },
   { path: '/app/',        titleContains: 'The Golden Unicorns' },
   { path: '/contact/',    titleContains: 'The Golden Unicorns' },
   { path: '/events/',     titleContains: 'The Golden Unicorns' },
