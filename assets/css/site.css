@@ -90,15 +90,15 @@ iframe {
 .ambient::before {
   content: ""; position: absolute; inset: -10%;
   background: radial-gradient(ellipse at 30% 15%,
-    rgba(212, 168, 67, 0.04) 0%,
-    rgba(212, 168, 67, 0.01) 26%,
+    rgba(212, 168, 67, 0.02) 0%,
+    rgba(212, 168, 67, 0.005) 24%,
     transparent 58%);
   animation: drift 70s ease-in-out infinite alternate;
 }
 .ambient::after {
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(ellipse at 75% 90%,
-    rgba(212, 168, 67, 0.025) 0%,
+    rgba(212, 168, 67, 0.012) 0%,
     transparent 55%);
   animation: drift 110s ease-in-out infinite alternate-reverse;
 }
