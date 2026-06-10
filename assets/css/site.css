@@ -407,15 +407,16 @@ iframe {
 }
 
 .splash-subtitle {
-  width: min(100%, 32rem);
-  margin: -0.85rem 0 0;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.08rem, 2.2vw, 1.45rem);
-  font-style: italic;
+  width: min(100%, 26rem);
+  margin: -0.45rem 0 0;
+  font-family: "Jost", sans-serif;
+  font-size: clamp(0.64rem, 1.25vw, 0.78rem);
   font-weight: 300;
-  line-height: 1.35;
+  letter-spacing: 0.18em;
+  line-height: 1.45;
   text-align: center;
-  color: rgba(243, 224, 183, 0.84);
+  text-transform: uppercase;
+  color: var(--text-dim);
   opacity: 0;
   transition: opacity 0.9s var(--ease);
 }
@@ -1075,10 +1076,11 @@ h2 em,
   }
 
   .splash-subtitle {
-    width: min(100%, 18rem);
-    margin-top: -0.35rem;
-    font-size: 1rem;
-    line-height: 1.32;
+    width: min(100%, 16rem);
+    margin-top: -0.15rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    line-height: 1.4;
   }
 
   .splash-bottom {
