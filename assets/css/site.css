@@ -881,6 +881,10 @@ h2 em,
   width: min(100%, 760px);
 }
 
+.page-intro.intro-title-space .section-title {
+  margin-bottom: 0.95rem;
+}
+
 .page-intro .hero-actions {
   margin-top: 0.7rem;
 }
@@ -891,6 +895,35 @@ h2 em,
 
 .page-intro.tight-bottom {
   padding-bottom: clamp(0.7rem, 1.5vw, 1rem);
+}
+
+.page-intro.intro-follow-space {
+  padding-bottom: clamp(1.2rem, 2.6vw, 1.8rem);
+}
+
+.page-intro.intro-follow-space + .section.flow-section,
+.page-intro.intro-follow-space + .section.tight-stack {
+  padding-top: clamp(1.2rem, 2.6vw, 1.8rem);
+}
+
+.page-intro.project-hero .body-copy {
+  margin-top: 0.95rem;
+}
+
+.page-intro.project-hero .body-copy p {
+  margin-bottom: 0;
+}
+
+.page-intro.events-intro {
+  padding-bottom: clamp(0.75rem, 1.5vw, 1.05rem);
+}
+
+.page-intro.events-intro .section-title {
+  margin-bottom: 0.45rem;
+}
+
+.events-media {
+  padding-top: clamp(0.45rem, 1vw, 0.75rem) !important;
 }
 
 .section.tight-stack {
