@@ -406,6 +406,24 @@ iframe {
   opacity: 1;
 }
 
+.splash-subtitle {
+  width: min(100%, 32rem);
+  margin: -0.85rem 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.08rem, 2.2vw, 1.45rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.35;
+  text-align: center;
+  color: rgba(243, 224, 183, 0.84);
+  opacity: 0;
+  transition: opacity 0.9s var(--ease);
+}
+
+.splash-subtitle.is-revealed {
+  opacity: 1;
+}
+
 /* ─── SPLASH BOTTOM (Instagram icon) ─── */
 .splash-bottom {
   position: fixed;
@@ -1054,6 +1072,13 @@ h2 em,
   .splash-wordmark {
     font-size: clamp(0.78rem, 4.5vw, 1.1rem);
     letter-spacing: 0.24em;
+  }
+
+  .splash-subtitle {
+    width: min(100%, 18rem);
+    margin-top: -0.35rem;
+    font-size: 1rem;
+    line-height: 1.32;
   }
 
   .splash-bottom {

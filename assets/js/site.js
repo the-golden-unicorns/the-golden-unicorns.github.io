@@ -93,6 +93,7 @@
   // Unicorn fades in on load; nav/wordmark/Instagram revealed on click
   const splashLogo = document.getElementById("splash-logo");
   const splashWordmark = document.getElementById("splash-wordmark");
+  const splashSubtitle = document.getElementById("splash-subtitle");
   const splashBottom = document.querySelector(".splash-bottom");
   if (splashLogo) requestAnimationFrame(() => splashLogo.classList.add("is-loaded"));
 
@@ -105,6 +106,7 @@
       splashNav.removeAttribute("aria-hidden");
       splashUnicorn.setAttribute("aria-expanded", "true");
       if (splashWordmark) splashWordmark.classList.add("is-revealed");
+      if (splashSubtitle) splashSubtitle.classList.add("is-revealed");
       if (splashBottom) splashBottom.classList.add("is-revealed");
     });
   }
