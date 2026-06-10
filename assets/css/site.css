@@ -833,6 +833,24 @@ h2 em,
   padding-top: clamp(1.5rem, 3vw, 2.2rem);
 }
 
+.manifesto-core .list-card {
+  padding: 0.8rem 0;
+}
+
+.manifesto-core .list-card:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.manifesto-copy .reveal + .reveal {
+  margin-top: 1.6rem;
+}
+
+.manifesto-copy .eyebrow,
+.manifesto-core .eyebrow {
+  margin-bottom: 0.65rem;
+}
+
 .stack-md > * + * {
   margin-top: 1.5rem;
 }
