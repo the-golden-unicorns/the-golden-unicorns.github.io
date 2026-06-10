@@ -179,7 +179,7 @@
             ? (Math.random() * 0.3 + 0.45)
             : (Math.random() * 0.25 + 0.15)
            ) * dpr,
-        o: Math.random() * 0.52 + 0.16,
+        o: Math.random() * 0.26 + 0.08,
         wobble: Math.random() * Math.PI * 2,
         wobbleSpeed: Math.random() * 0.012 + 0.004,
         pulse: Math.random() * Math.PI * 2,
@@ -193,9 +193,9 @@
   glowSprite.width = glowSprite.height = SPRITE;
   const sctx = glowSprite.getContext("2d");
   const sg = sctx.createRadialGradient(SPRITE / 2, SPRITE / 2, 0, SPRITE / 2, SPRITE / 2, SPRITE / 2);
-  sg.addColorStop(0.00, "rgba(248, 222, 132, 1.00)");
-  sg.addColorStop(0.12, "rgba(232, 193, 74, 0.78)");
-  sg.addColorStop(0.35, "rgba(212, 168, 67, 0.30)");
+  sg.addColorStop(0.00, "rgba(248, 222, 132, 0.60)");
+  sg.addColorStop(0.12, "rgba(232, 193, 74, 0.38)");
+  sg.addColorStop(0.35, "rgba(212, 168, 67, 0.15)");
   sg.addColorStop(1.00, "rgba(212, 168, 67, 0)");
   sctx.fillStyle = sg;
   sctx.fillRect(0, 0, SPRITE, SPRITE);

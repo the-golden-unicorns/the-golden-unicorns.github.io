@@ -90,15 +90,15 @@ iframe {
 .ambient::before {
   content: ""; position: absolute; inset: -10%;
   background: radial-gradient(ellipse at 30% 15%,
-    rgba(212, 168, 67, 0.08) 0%,
-    rgba(212, 168, 67, 0.02) 26%,
+    rgba(212, 168, 67, 0.04) 0%,
+    rgba(212, 168, 67, 0.01) 26%,
     transparent 58%);
   animation: drift 70s ease-in-out infinite alternate;
 }
 .ambient::after {
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(ellipse at 75% 90%,
-    rgba(212, 168, 67, 0.05) 0%,
+    rgba(212, 168, 67, 0.025) 0%,
     transparent 55%);
   animation: drift 110s ease-in-out infinite alternate-reverse;
 }
@@ -607,6 +607,10 @@ h2 em,
   text-align: center;
 }
 
+.page-label {
+  margin-bottom: 0.4rem;
+}
+
 .body-copy {
   width: min(100%, 760px);
   margin: 0 auto;
@@ -851,6 +855,10 @@ h2 em,
 
 .page-intro .hero-actions {
   margin-top: 1.2rem;
+}
+
+.page-intro.tight-after {
+  padding-bottom: clamp(1rem, 2vw, 1.4rem);
 }
 
 .cta-gap {
