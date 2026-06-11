@@ -24,6 +24,11 @@
   --nav-h: clamp(60px, 6.5vw, 80px);
   --container: 1040px;
   --narrow: 720px;
+  --space-copy: clamp(1rem, 1.8vw, 1.28rem);
+  --space-stack: clamp(1.15rem, 2.1vw, 1.5rem);
+  --space-section: clamp(0.9rem, 1.8vw, 1.2rem);
+  --space-cta: clamp(1.4rem, 3vw, 2rem);
+  --space-intro-gap: clamp(0.6rem, 1.2vw, 0.9rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(.2, 0, 0, 1);
   --t-fast: .35s cubic-bezier(.2, 0, 0, 1);
@@ -643,8 +648,8 @@ h2 em,
 }
 
 .section.flow-section {
-  padding-top: clamp(1.05rem, 1.9vw, 1.5rem);
-  padding-bottom: clamp(1.05rem, 1.9vw, 1.5rem);
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
 }
 
 .section.flush-top {
@@ -653,7 +658,7 @@ h2 em,
 
 .section-title {
   width: min(100%, 760px);
-  margin: 0 auto 1.3rem;
+  margin: 0 auto var(--space-copy);
   color: var(--gold-light);
   font-size: clamp(1.45rem, 3vw, 2.15rem);
   font-weight: 300;
@@ -673,7 +678,7 @@ h2 em,
 }
 
 .body-copy p {
-  margin-bottom: 1.2rem;
+  margin-bottom: var(--space-copy);
 }
 
 .body-copy p:last-child {
@@ -684,7 +689,7 @@ h2 em,
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
-  margin-top: 1.65rem;
+  margin-top: var(--space-stack);
   border: 1px solid var(--line-soft);
   background: var(--line-soft);
 }
@@ -715,7 +720,7 @@ h2 em,
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  margin-top: 1.65rem;
+  margin-top: var(--space-stack);
   border: 1px solid var(--line-soft);
   background: var(--line-soft);
 }
@@ -817,7 +822,7 @@ h2 em,
 
 .faq {
   width: min(100%, 820px);
-  margin: 2rem auto 0;
+  margin: var(--space-stack) auto 0;
 }
 
 .faq details {
@@ -893,7 +898,7 @@ h2 em,
 }
 
 .cta-section {
-  padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 4vw, 3rem);
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3rem);
   text-align: center;
 }
 
@@ -928,11 +933,11 @@ h2 em,
 }
 
 .manifesto-essay > .reveal + .reveal {
-  margin-top: 1.55rem;
+  margin-top: var(--space-stack);
 }
 
 .manifesto-pause {
-  margin: 0.3rem auto 0.15rem;
+  margin: 0.1rem auto 0.05rem;
   color: rgba(234, 209, 140, 0.26);
   font-family: "Jost", sans-serif;
   font-size: 0.72rem;
@@ -966,7 +971,7 @@ h2 em,
 }
 
 .page-intro .section-title {
-  margin-bottom: 0.55rem;
+  margin-bottom: var(--space-intro-gap);
 }
 
 .page-intro .body-copy {
@@ -974,7 +979,7 @@ h2 em,
 }
 
 .page-intro.intro-title-space .section-title {
-  margin-bottom: 0.95rem;
+  margin-bottom: var(--space-intro-gap);
 }
 
 .page-intro.aligned-intro {
@@ -982,7 +987,7 @@ h2 em,
 }
 
 .page-intro .hero-actions {
-  margin-top: 0.7rem;
+  margin-top: var(--space-intro-gap);
 }
 
 .page-intro.tight-after {
@@ -994,16 +999,16 @@ h2 em,
 }
 
 .page-intro.intro-follow-space {
-  padding-bottom: clamp(1.2rem, 2.6vw, 1.8rem);
+  padding-bottom: var(--space-section);
 }
 
 .page-intro.intro-follow-space + .section.flow-section,
 .page-intro.intro-follow-space + .section.tight-stack {
-  padding-top: clamp(1.2rem, 2.6vw, 1.8rem);
+  padding-top: var(--space-section);
 }
 
 .page-intro.project-hero .body-copy {
-  margin-top: 0.95rem;
+  margin-top: var(--space-intro-gap);
 }
 
 .page-intro.project-hero .body-copy p {
@@ -1011,7 +1016,7 @@ h2 em,
 }
 
 .page-intro.project-hero.intro-follow-space + .section.flow-section.tight-stack {
-  padding-top: clamp(0.45rem, 1vw, 0.8rem);
+  padding-top: clamp(0.3rem, 0.75vw, 0.55rem);
 }
 
 .page-intro.events-intro {
@@ -1020,7 +1025,7 @@ h2 em,
 }
 
 .page-intro.events-intro .section-title {
-  margin-bottom: 0.45rem;
+  margin-bottom: var(--space-intro-gap);
 }
 
 .events-media {
@@ -1032,20 +1037,20 @@ h2 em,
 }
 
 .events-lede {
-  margin-bottom: 1.45rem !important;
+  margin-bottom: var(--space-stack) !important;
 }
 
 .section.tight-stack {
-  padding-top: clamp(0.85rem, 1.7vw, 1.15rem);
-  padding-bottom: clamp(0.85rem, 1.7vw, 1.15rem);
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
 }
 
 .content-block > * + * {
-  margin-top: 1.4rem;
+  margin-top: var(--space-stack);
 }
 
 .content-block .eyebrow {
-  margin-bottom: 0.65rem;
+  margin-bottom: var(--space-intro-gap);
 }
 
 .content-block .body-copy p,
@@ -1054,18 +1059,18 @@ h2 em,
 }
 
 .cta-gap {
-  padding-top: clamp(2.5rem, 5vw, 3.6rem);
-  padding-bottom: clamp(1.4rem, 3vw, 2rem);
+  padding-top: var(--space-cta);
+  padding-bottom: var(--space-cta);
 }
 
 .events-quote-cta {
-  padding-top: clamp(2rem, 4vw, 2.8rem);
-  padding-bottom: clamp(2rem, 4vw, 2.8rem);
+  padding-top: var(--space-cta);
+  padding-bottom: var(--space-cta);
 }
 
 .project-membership-cta {
-  padding-top: clamp(1.2rem, 2.8vw, 1.8rem);
-  padding-bottom: clamp(1rem, 2.4vw, 1.4rem);
+  padding-top: var(--space-cta);
+  padding-bottom: var(--space-cta);
 }
 
 .faq-section-tight {
