@@ -422,7 +422,7 @@ iframe {
 }
 
 .splash-wordmark-image {
-  width: min(92vw, 42rem);
+  width: min(86vw, 34rem);
   height: auto;
   display: block;
 }
@@ -1151,7 +1151,7 @@ h2 em,
   }
 
   .splash-wordmark-image {
-    width: min(92vw, 24rem);
+    width: min(82vw, 20rem);
   }
 
   .splash-subtitle {
