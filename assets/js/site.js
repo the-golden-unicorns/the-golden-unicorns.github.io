@@ -1,6 +1,80 @@
 (function () {
   const ENDPOINT = "https://dash.thegoldenunicorns.com/api/founder-signal-events";
   const TRACKED_CTA_CLASSES = ["nav-cta", "button"];
+  const CONSENT_KEY = "tgu_public_cookie_consent";
+  const CONSENT_ACCEPTED = "accepted";
+  const CONSENT_DECLINED = "declined";
+
+  function getConsent() {
+    try {
+      return window.localStorage.getItem(CONSENT_KEY);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function setConsent(value) {
+    try {
+      window.localStorage.setItem(CONSENT_KEY, value);
+    } catch (err) {
+      // ignore storage failures
+    }
+  }
+
+  function hasAnalyticsConsent() {
+    return getConsent() === CONSENT_ACCEPTED;
+  }
+
+  function buildCookieBanner() {
+    const banner = document.createElement("aside");
+    banner.className = "cookie-banner";
+    banner.setAttribute("aria-label", "Cookie consent");
+    banner.hidden = true;
+    banner.innerHTML = `
+      <div class="cookie-banner__copy">
+        <p>We use a small amount of analytics to understand how the public site is used.</p>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="cookie-button cookie-button--ghost" type="button" data-cookie-decline>Decline</button>
+        <button class="cookie-button" type="button" data-cookie-accept>Accept</button>
+        <a class="cookie-link" href="/cookie-policy/">Cookie Policy</a>
+      </div>
+    `;
+    return banner;
+  }
+
+  function mountCookieBanner() {
+    const shell = document.querySelector(".site-shell") || document.body;
+    const banner = buildCookieBanner();
+    shell.appendChild(banner);
+
+    const hideBanner = () => {
+      banner.classList.remove("is-visible");
+      window.setTimeout(() => {
+        banner.hidden = true;
+      }, 260);
+    };
+
+    const showBanner = () => {
+      banner.hidden = false;
+      window.requestAnimationFrame(() => {
+        banner.classList.add("is-visible");
+      });
+    };
+
+    banner.querySelector("[data-cookie-accept]").addEventListener("click", () => {
+      setConsent(CONSENT_ACCEPTED);
+      hideBanner();
+      sendFounderEvent("page_view");
+    });
+
+    banner.querySelector("[data-cookie-decline]").addEventListener("click", () => {
+      setConsent(CONSENT_DECLINED);
+      hideBanner();
+    });
+
+    return { showBanner, hideBanner };
+  }
 
   function founderTrackingEnabled() {
     return /(^|\.)thegoldenunicorns\.com$/i.test(window.location.hostname);
@@ -19,7 +93,7 @@
   }
 
   function sendFounderEvent(eventName, extra) {
-    if (!founderTrackingEnabled()) return;
+    if (!founderTrackingEnabled() || !hasAnalyticsConsent()) return;
 
     const payload = JSON.stringify({
       source: "public_site",
@@ -58,7 +132,14 @@
       .slice(0, 80);
   }
 
-  sendFounderEvent("page_view");
+  const cookieBanner = mountCookieBanner();
+  const onHomeSplash = !!document.getElementById("splash-unicorn");
+  const currentConsent = getConsent();
+  if (hasAnalyticsConsent()) {
+    sendFounderEvent("page_view");
+  } else if (!currentConsent && !onHomeSplash) {
+    cookieBanner.showBanner();
+  }
 
   document.addEventListener("click", event => {
     const anchor = event.target && event.target.closest ? event.target.closest("a[href]") : null;
@@ -108,6 +189,7 @@
       if (splashWordmark) splashWordmark.classList.add("is-revealed");
       if (splashSubtitle) splashSubtitle.classList.add("is-revealed");
       if (splashBottom) splashBottom.classList.add("is-revealed");
+      if (!getConsent()) cookieBanner.showBanner();
     });
   }
 
