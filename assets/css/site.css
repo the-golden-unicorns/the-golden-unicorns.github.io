@@ -402,6 +402,12 @@ iframe {
   transition: opacity 0.9s var(--ease);
 }
 
+.splash-wordmark-image {
+  width: min(92vw, 42rem);
+  height: auto;
+  display: block;
+}
+
 .splash-wordmark.is-revealed {
   opacity: 1;
 }
@@ -874,6 +880,10 @@ h2 em,
   margin-top: 1.15rem;
 }
 
+.manifesto-essay > .reveal + .reveal {
+  margin-top: 1.55rem;
+}
+
 .manifesto-copy .eyebrow,
 .manifesto-core .eyebrow {
   margin-bottom: 0.65rem;
@@ -1090,6 +1100,10 @@ h2 em,
   .splash-wordmark {
     font-size: clamp(0.78rem, 4.5vw, 1.1rem);
     letter-spacing: 0.24em;
+  }
+
+  .splash-wordmark-image {
+    width: min(92vw, 24rem);
   }
 
   .splash-subtitle {
