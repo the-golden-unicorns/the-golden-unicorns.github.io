@@ -32,7 +32,7 @@
     banner.hidden = true;
     banner.innerHTML = `
       <div class="cookie-banner__copy">
-        <p>We use a small amount of analytics to understand how the public site is used.</p>
+        <p>We use analytics to understand how the public site is used.</p>
       </div>
       <div class="cookie-banner__actions">
         <button class="cookie-button cookie-button--ghost" type="button" data-cookie-decline>Decline</button>
