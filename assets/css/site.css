@@ -121,6 +121,25 @@ iframe {
   z-index: 2;
 }
 
+.site-shell::before {
+  content: "";
+  position: fixed;
+  top: calc(var(--nav-h) - 6px);
+  left: 0;
+  right: 0;
+  height: clamp(88px, 12vw, 150px);
+  z-index: 15;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 6, 5, 0.96) 0%,
+    rgba(6, 6, 5, 0.9) 18%,
+    rgba(6, 6, 5, 0.72) 42%,
+    rgba(6, 6, 5, 0.34) 72%,
+    rgba(6, 6, 5, 0) 100%
+  );
+}
+
 /* ─── NAV ─── */
 .site-nav {
   position: fixed;
