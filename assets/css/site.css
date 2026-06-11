@@ -677,7 +677,8 @@ h2 em,
 }
 
 .tile h3,
-.list-card h3 {
+.list-card h3,
+.membership-card h3 {
   color: var(--gold-pale);
   font-size: clamp(1.32rem, 2.4vw, 1.72rem);
   font-weight: 300;
@@ -685,9 +686,30 @@ h2 em,
 
 .tile p,
 .list-card p,
+.membership-card p,
 .faq p,
 .note {
   color: var(--text-soft);
+}
+
+.membership-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1.65rem;
+  border: 1px solid var(--line-soft);
+  background: var(--line-soft);
+}
+
+.membership-card {
+  min-height: 230px;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  background: rgba(6, 6, 5, 0.66);
+}
+
+.membership-card .eyebrow {
+  display: block;
+  margin-bottom: 0.8rem;
 }
 
 .steps {
@@ -1078,7 +1100,8 @@ h2 em,
   }
 
   .grid,
-  .split {
+  .split,
+  .membership-grid {
     grid-template-columns: 1fr;
   }
 
