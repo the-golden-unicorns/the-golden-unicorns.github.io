@@ -1015,8 +1015,12 @@ h2 em,
   margin-bottom: 0;
 }
 
+.page-intro.project-hero.intro-follow-space {
+  padding-bottom: clamp(0.2rem, 0.5vw, 0.4rem);
+}
+
 .page-intro.project-hero.intro-follow-space + .section.flow-section.tight-stack {
-  padding-top: clamp(0.3rem, 0.75vw, 0.55rem);
+  padding-top: 0;
 }
 
 .page-intro.events-intro {
