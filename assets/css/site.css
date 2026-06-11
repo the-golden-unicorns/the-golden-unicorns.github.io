@@ -931,6 +931,17 @@ h2 em,
   margin-top: 1.55rem;
 }
 
+.manifesto-pause {
+  margin: 0.3rem auto 0.15rem;
+  color: rgba(234, 209, 140, 0.26);
+  font-family: "Jost", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  text-align: center;
+}
+
 .manifesto-copy .eyebrow,
 .manifesto-core .eyebrow {
   margin-bottom: 0.65rem;
@@ -999,6 +1010,10 @@ h2 em,
   margin-bottom: 0;
 }
 
+.page-intro.project-hero.intro-follow-space + .section.flow-section.tight-stack {
+  padding-top: clamp(0.45rem, 1vw, 0.8rem);
+}
+
 .page-intro.events-intro {
   padding-top: clamp(3.3rem, 6vw, 4.9rem);
   padding-bottom: clamp(0.75rem, 1.5vw, 1.05rem);
@@ -1014,6 +1029,10 @@ h2 em,
 
 .events-copy-block .eyebrow {
   margin-bottom: 1rem;
+}
+
+.events-lede {
+  margin-bottom: 1.45rem !important;
 }
 
 .section.tight-stack {
@@ -1158,7 +1177,7 @@ h2 em,
 
   .splash-subtitle {
     width: min(100%, 16rem);
-    margin-top: -0.15rem;
+    margin-top: 0.22rem;
     font-size: 0.62rem;
     letter-spacing: 0.16em;
     line-height: 1.4;
