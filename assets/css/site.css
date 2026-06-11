@@ -124,18 +124,18 @@ iframe {
 .site-shell::before {
   content: "";
   position: fixed;
-  top: calc(var(--nav-h) - 6px);
+  top: 0;
   left: 0;
   right: 0;
-  height: clamp(88px, 12vw, 150px);
+  height: clamp(82px, 9vw, 122px);
   z-index: 15;
   pointer-events: none;
   background: linear-gradient(
     to bottom,
     rgba(6, 6, 5, 0.96) 0%,
-    rgba(6, 6, 5, 0.9) 18%,
-    rgba(6, 6, 5, 0.72) 42%,
-    rgba(6, 6, 5, 0.34) 72%,
+    rgba(6, 6, 5, 0.9) 22%,
+    rgba(6, 6, 5, 0.58) 54%,
+    rgba(6, 6, 5, 0.2) 78%,
     rgba(6, 6, 5, 0) 100%
   );
 }
@@ -433,7 +433,7 @@ iframe {
 
 .splash-subtitle {
   width: min(100%, 26rem);
-  margin: -0.45rem 0 0;
+  margin: 0.12rem 0 0;
   font-family: "Jost", sans-serif;
   font-size: clamp(0.64rem, 1.25vw, 0.78rem);
   font-weight: 300;
@@ -951,6 +951,7 @@ h2 em,
 
 .page-intro {
   text-align: center;
+  padding-top: clamp(3.3rem, 6vw, 4.9rem);
 }
 
 .page-intro .section-title {
@@ -966,7 +967,7 @@ h2 em,
 }
 
 .page-intro.aligned-intro {
-  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(3.3rem, 6vw, 4.9rem);
 }
 
 .page-intro .hero-actions {
@@ -999,6 +1000,7 @@ h2 em,
 }
 
 .page-intro.events-intro {
+  padding-top: clamp(3.3rem, 6vw, 4.9rem);
   padding-bottom: clamp(0.75rem, 1.5vw, 1.05rem);
 }
 
