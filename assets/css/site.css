@@ -707,6 +707,12 @@ h2 em,
   background: rgba(6, 6, 5, 0.66);
 }
 
+.membership-card h3 {
+  font-size: clamp(1.08rem, 1.85vw, 1.3rem);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
 .membership-card .eyebrow {
   display: block;
   margin-bottom: 0.8rem;
